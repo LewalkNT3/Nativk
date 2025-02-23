@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
-export default function HandleLogout() {
+export const useLogout = () => {
   const [user, setUser] = useState<any>(null);
   const navigate = useNavigate();
 
@@ -41,12 +41,6 @@ export default function HandleLogout() {
     setUser(null);
     navigate("/login");
   };
-  return (
-    <button
-      onClick={handleLogout}
-      className="p-3 bg-blue-700 rounded-4xl text-white w-full mt-5 hover:bg-blue-600 cursor-pointer"
-    >
-      Cerrar Sesion
-    </button>
-  );
-}
+
+  return { user, handleLogout };
+};

@@ -5,7 +5,6 @@ export const registerUser = async (data: {
   username: string;
   first_name: string;
   last_name: string;
-  dni: string;
   phone: string;
   password: string;
 }) => {

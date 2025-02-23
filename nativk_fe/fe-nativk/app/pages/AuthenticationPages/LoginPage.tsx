@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { loginUser } from "~/api/auth";
+import { useNavigate } from "react-router";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -8,6 +9,8 @@ export default function LoginPage() {
     username: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const mutation = useMutation<void, Error, typeof formData>({
     mutationFn: loginUser,
@@ -17,6 +20,7 @@ export default function LoginPage() {
       localStorage.setItem("refresh_token", data.refresh);
       localStorage.setItem("user", JSON.stringify(data.user));
       alert("Inicio exitoso");
+      navigate("/pagina-prueba");
     },
     onError: (error) => {
       console.error("error al iniciar sesion", error);
@@ -34,58 +38,74 @@ export default function LoginPage() {
   };
 
   return (
-    <section className="flex justify-center  items-center h-screen text-black">
-      <div className="bg-amber-50 p-7 w-[560px] rounded-2xl shadow-2xl">
-        <div>
-          <h2 className="font-semibold text-6xl">Login</h2>
-        </div>
-        <form className="flex flex-col" onSubmit={handleSubmit}>
-          <div className="flex flex-col gap-1 pt-3">
-            <span>Email</span>
-            <input
-              value={formData.email}
-              onChange={handleChange}
-              type="email"
-              name="email"
-              className="bg-gray-200 rounded p-2"
-              placeholder="JohnDoe@example.com"
-            />
-          </div>
-          <div className="flex flex-col gap-1 pt-3">
-            <span>Username</span>
-            <input
-              value={formData.username}
-              onChange={handleChange}
-              name="username"
-              type="text"
-              className="bg-gray-200 rounded p-2"
-              placeholder="JohnDoe"
-            />
-            <div className="flex flex-col gap-1 pt-3 ">
-              <span>Password</span>
-              <input
-                value={formData.password}
-                onChange={handleChange}
-                name="password"
-                type="password"
-                className="bg-gray-200 rounded p-2 w-full "
-                placeholder="SecurePassword1234"
-              />
+    <section className="flex justify-center p-10 text-black">
+      <div>
+        <div className="bg-amber-50 max-w-[950px] max-h-[700px]  rounded-2xl shadow-2xl flex flex-row">
+          <div className="w-[60%] flex justify-center items-center flex-col">
+            <div className="">
+              <h2 className="font-black text-5xl">Login</h2>
             </div>
+            <form
+              className="flex flex-col w-full p-10 "
+              onSubmit={handleSubmit}
+            >
+              <div className="flex flex-col gap-1 pt-3">
+                <span className="font-bold ">Email</span>
+                <input
+                  value={formData.email}
+                  onChange={handleChange}
+                  type="email"
+                  name="email"
+                  className="bg-gray-200 rounded p-2 "
+                  placeholder="JohnDoe@example.com"
+                />
+              </div>
+              <div className="flex flex-col gap-1 pt-3">
+                <span className="font-bold ">Username</span>
+                <input
+                  value={formData.username}
+                  onChange={handleChange}
+                  name="username"
+                  type="text"
+                  className="bg-gray-200 rounded p-2"
+                  placeholder="JohnDoe"
+                />
+                <div className="flex flex-col gap-1 pt-3 ">
+                  <span className="font-bold">Password</span>
+                  <input
+                    value={formData.password}
+                    onChange={handleChange}
+                    name="password"
+                    type="password"
+                    className="bg-gray-200 rounded p-2 w-full "
+                    placeholder="SecurePassword1234"
+                  />
+                </div>
+              </div>
+              <div className="flex justify-center items-center self-center">
+                <button
+                  type="submit"
+                  className="p-3 bg-blue-700 rounded-4xl text-white w-[250px] mt-5 hover:bg-blue-600 cursor-pointer"
+                >
+                  Iniciar Sesion
+                </button>
+              </div>
+              <p className="self-center p-3 ">
+                No tenes cuenta?{" "}
+                <a href="/register" className="hover:text-blue-600">
+                  Registrate
+                </a>
+              </p>
+            </form>
           </div>
-          <button
-            type="submit"
-            className="p-3 bg-blue-700 rounded-4xl text-white w-full mt-5 hover:bg-blue-600 cursor-pointer"
-          >
-            Iniciar Sesion
-          </button>
-          <p className="self-center p-3">
-            No tenes cuenta?{" "}
-            <a href="/register" className="hover:text-blue-600">
-              Registrate
-            </a>
-          </p>
-        </form>
+          <div className="flex items-center justify-center w-[50%] p-0">
+            <img
+              src="./Mountain.jpg"
+              alt="Mountain"
+              className="object-cover h-full w-full  m-0"
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

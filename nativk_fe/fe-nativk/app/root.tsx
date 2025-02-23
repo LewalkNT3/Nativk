@@ -6,12 +6,13 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./api/queryClient";
 import type { Route } from "./+types/root";
 import "./app.css";
 import "../axiosConfig"; // Importa la configuración de Axios
+import NavbarSection from "./Layout/NavbarSection";
+import { AuthProvider } from "./AuthContext";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -23,6 +24,10 @@ export const links: Route.LinksFunction = () => [
   {
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+  },
+  {
+    rel: "stylesheet",
+    href: "https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;700&display=swap",
   },
 ];
 
@@ -37,17 +42,25 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <QueryClientProvider client={queryClient}>
-          {children}
+          <AuthProvider>{children}</AuthProvider>
         </QueryClientProvider>
         <ScrollRestoration />
         <Scripts />
+        <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
       </body>
     </html>
   );
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <NavbarSection />
+        <Outlet />
+      </AuthProvider>
+    </QueryClientProvider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
