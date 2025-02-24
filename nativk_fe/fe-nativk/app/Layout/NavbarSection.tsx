@@ -51,6 +51,11 @@ export default function NavbarSection() {
       <div>
         <p className="text-2xl font-black">Nativk</p>
       </div>
+      <div className="flex flex-row justify-between gap-5  font-semibold">
+        <a href="/foods">Foods</a>
+        <a href="/notes">Notes</a>
+        <a href="/pagina-prueba">Pruebas</a>
+      </div>
       <div className="flex flex-row gap-5 items-center">
         {user ? (
           <div className="relative" ref={menuRef}>

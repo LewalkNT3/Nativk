@@ -6,4 +6,5 @@ export default [
   route("register", "routes/AuthenticationRoutes/register.tsx"),
   route("login", "routes/AuthenticationRoutes/login.tsx"),
   route("profile", "routes/AuthenticationRoutes/profile.tsx"),
+  route("foods", "routes/FoodsRoutes/foods.tsx"),
 ] satisfies RouteConfig;

@@ -20,7 +20,7 @@ export default function LoginPage() {
       localStorage.setItem("refresh_token", data.refresh);
       localStorage.setItem("user", JSON.stringify(data.user));
       alert("Inicio exitoso");
-      navigate("/pagina-prueba");
+      navigate("/profile");
     },
     onError: (error) => {
       console.error("error al iniciar sesion", error);

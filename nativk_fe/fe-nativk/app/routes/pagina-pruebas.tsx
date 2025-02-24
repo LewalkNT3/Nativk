@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import type { Route } from "./+types/home";
-import HandleLogout from "~/api/auth/HandleLogut";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -34,7 +33,6 @@ export default function PaginaPruebas() {
       <p>
         Nombre: {user.first_name} {user.last_name}
       </p>
-      <HandleLogout />
     </main>
   );
 }

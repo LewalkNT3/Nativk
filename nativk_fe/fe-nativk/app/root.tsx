@@ -12,7 +12,6 @@ import type { Route } from "./+types/root";
 import "./app.css";
 import "../axiosConfig"; // Importa la configuración de Axios
 import NavbarSection from "./Layout/NavbarSection";
-import { AuthProvider } from "./AuthContext";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -42,7 +41,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <QueryClientProvider client={queryClient}>
-          <AuthProvider>{children}</AuthProvider>
+          {children}
         </QueryClientProvider>
         <ScrollRestoration />
         <Scripts />
@@ -55,10 +54,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <NavbarSection />
-        <Outlet />
-      </AuthProvider>
+      <NavbarSection />
+      <Outlet />
     </QueryClientProvider>
   );
 }

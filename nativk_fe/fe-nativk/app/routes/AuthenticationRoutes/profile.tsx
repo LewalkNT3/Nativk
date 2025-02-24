@@ -1,5 +1,6 @@
 import type { Route } from "../+types/home";
 import ProfilePage from "~/pages/AuthenticationPages/ProfilePage";
+import PrivateRoute from "PrivateRoute";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -13,6 +14,10 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function Register() {
-  return <ProfilePage />;
+export default function Profile() {
+  return (
+    // <PrivateRoute>
+    <ProfilePage />
+    // </PrivateRoute>
+  );
 }
