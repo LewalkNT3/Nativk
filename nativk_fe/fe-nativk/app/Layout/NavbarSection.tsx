@@ -53,7 +53,7 @@ export default function NavbarSection() {
       </div>
       <div className="flex flex-row justify-between gap-5  font-semibold">
         <a href="/foods">Foods</a>
-        <a href="/notes">Notes</a>
+        <a href="/measurement">Measurement</a>
         <a href="/pagina-prueba">Pruebas</a>
       </div>
       <div className="flex flex-row gap-5 items-center">
