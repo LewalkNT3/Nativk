@@ -28,21 +28,38 @@ export default function NavbarSection() {
   }
 
   return (
-    <header className="sticky top-0 flex justify-between gap-28 items-center bg-transparent p-4 mx-30">
+    <header className="sticky top-0 flex gap-28 w-full items-center justify-center bg-transparent p-3 ">
       <div>
-        <p className="text-2xl font-black">Nativk</p>
+        <a href="/" className="text-3xl font-extrabold">
+          Ntv
+        </a>
       </div>
-      <div className="flex flex-row justify-between gap-5  font-semibold">
-        <a href="/foods">Foods</a>
-        <a href="/measurement">Measurement</a>
-        <a href="/pagina-prueba">Pruebas</a>
+      <div className="flex flex-row justify-between gap-10 text-lg">
+        <a
+          className="hover:border-b-sky-600 hover:border-b transition-all"
+          href="/foods"
+        >
+          Foods
+        </a>
+        <a
+          className="hover:border-b-sky-600 hover:border-b transition-all"
+          href="/measurement"
+        >
+          Measurement
+        </a>
+        <a
+          className="hover:border-b-sky-600 hover:border-b transition-all"
+          href="/pagina-prueba"
+        >
+          Pruebas
+        </a>
       </div>
       <div className="flex flex-row gap-5 items-center">
         {user ? (
           <div className="relative" ref={menuRef}>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center w-12 h-12 text-xl text-white bg-indigo-500 rounded-full"
+              className="inline-flex items-center justify-center w-10 h-10  text-white bg-indigo-500 rounded-full"
             >
               {getInitials(user.first_name, user.last_name)}
             </button>
