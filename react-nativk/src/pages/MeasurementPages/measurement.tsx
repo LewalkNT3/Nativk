@@ -1,26 +1,9 @@
-import { useState, useEffect } from "react";
-import {
-  getMeasurement,
-  createMeasurement,
-  deleteMeasurement,
-} from "../../../services/Measurement/measurement";
+import { useState } from "react";
+import { createMeasurement } from "../../../services/Measurement/measurement";
 
-import MeasurementSelector from "../../Components/MeasurementSelector";
+import MeasurementSelector from "./Components/MeasurementSelector";
 
 export default function MeasurementPage() {
-  interface Measurement {
-    id: number;
-    date: string;
-    weight: number;
-    sleep: number;
-    body_pain: number;
-    energy: number;
-    emotional_state: number;
-    frustration: number;
-    flags: boolean;
-  }
-
-  const [measurement, setMeasurement] = useState<Measurement[]>([]);
   const [form, setForm] = useState({
     weight: 0,
     sleep: 0,
@@ -31,20 +14,7 @@ export default function MeasurementPage() {
     flags: false,
   });
 
-  useEffect(() => {
-    fetchMeasurements();
-  }, []);
-
-  const fetchMeasurements = async () => {
-    try {
-      const data = await getMeasurement();
-      setMeasurement(data);
-    } catch (error) {
-      console.error("Error obteniendo mediciones", error);
-    }
-  };
-
-  const handleChange = (name: string, value: number) => {
+  const handleChange = (name: string, value: number | boolean) => {
     setForm({
       ...form,
       [name]: value,
@@ -54,7 +24,6 @@ export default function MeasurementPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Asegurar que los valores sean numéricos antes de enviarlos
     const formattedForm = {
       ...form,
       weight: parseFloat(form.weight.toString()) || 0,
@@ -67,7 +36,6 @@ export default function MeasurementPage() {
 
     try {
       await createMeasurement(formattedForm);
-      fetchMeasurements();
       setForm({
         weight: 0,
         sleep: 0,
@@ -79,15 +47,6 @@ export default function MeasurementPage() {
       });
     } catch (error) {
       console.error("Error creando la medición", error);
-    }
-  };
-
-  const handleDelete = async (id: number) => {
-    try {
-      await deleteMeasurement(id);
-      fetchMeasurements();
-    } catch (error) {
-      console.error("Error eliminando la medición", error);
     }
   };
 
@@ -111,41 +70,63 @@ export default function MeasurementPage() {
       </div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-1 w-full">
         <MeasurementSelector
-          name="weight"
-          placeholder="Peso"
-          value={form.weight}
-          onChange={(value) => handleChange("weight", value)}
-        />
-        <MeasurementSelector
           name="sleep"
           placeholder="Horas de Sueño"
           value={form.sleep}
           onChange={(value) => handleChange("sleep", value)}
+          isWeight={false}
+          isFlag={false}
         />
         <MeasurementSelector
           name="body_pain"
           placeholder="Dolor Corporal"
           value={form.body_pain}
           onChange={(value) => handleChange("body_pain", value)}
+          isWeight={false}
+          isFlag={false}
         />
         <MeasurementSelector
           name="energy"
           placeholder="Energía"
           value={form.energy}
           onChange={(value) => handleChange("energy", value)}
+          isWeight={false}
+          isFlag={false}
         />
         <MeasurementSelector
           name="emotional_state"
           placeholder="Estado Emocional"
           value={form.emotional_state}
           onChange={(value) => handleChange("emotional_state", value)}
+          isWeight={false}
+          isFlag={false}
         />
         <MeasurementSelector
           name="frustration"
           placeholder="Frustración"
           value={form.frustration}
           onChange={(value) => handleChange("frustration", value)}
+          isWeight={false}
+          isFlag={false}
         />
+        <div className="grid grid-cols-2 justify-center gap-10 pb-3">
+          <MeasurementSelector
+            name="weight"
+            placeholder="Peso"
+            value={form.weight}
+            onChange={(value) => handleChange("weight", value)}
+            isWeight={true}
+            isFlag={false}
+          />
+          <MeasurementSelector
+            name="flags"
+            placeholder="Flags"
+            value={form.flags}
+            onChange={(value) => handleChange("flags", value)}
+            isWeight={false}
+            isFlag={true}
+          />
+        </div>
 
         <button
           type="submit"
@@ -154,25 +135,6 @@ export default function MeasurementPage() {
           Guardar
         </button>
       </form>
-
-      {/* <ul className="mt-6 space-y-2">
-        {measurement.map((m) => (
-          <li
-            key={m.id}
-            className="flex items-center justify-between border-b pb-2"
-          >
-            <span>
-              {m.date} - Peso: {m.weight} kg - Energía: {m.energy}
-            </span>
-            <button
-              onClick={() => handleDelete(m.id)}
-              className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600"
-            >
-              Eliminar
-            </button>
-          </li>
-        ))}
-      </ul> */}
     </div>
   );
 }

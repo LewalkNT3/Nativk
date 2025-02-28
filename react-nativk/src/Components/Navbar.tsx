@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import useAuth from "../../services/Authentication/useAuth";
 import { useLogout } from "../../services/Authentication/useLogout";
 
+import { User } from "@deemlol/next-icons";
+import { LogOut } from "@deemlol/next-icons";
+
 export default function NavbarSection() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -76,11 +79,7 @@ export default function NavbarSection() {
                   </li>
                   <div className="w-300px bg-gray-400 h-[1px]"></div>
                   <li className="items-center  hover:bg-gray-100 cursor-pointer text-xl rounded p-2 font-semibold flex flex-row gap-2">
-                    <img
-                      src="src/assets/profile.svg"
-                      className="w-5 h-5 text-red-600 "
-                      alt=""
-                    />
+                    <User />
                     <a href="/profile">Perfil</a>
                   </li>
                   <div className="w-300px bg-gray-200 h-[1px]"></div>
@@ -88,11 +87,7 @@ export default function NavbarSection() {
                     className="flex flex-row gap-2 hover:bg-red-50 rounded cursor-pointer text-red-600 text-xl p-2 font-semibold"
                     onClick={handleLogout}
                   >
-                    <img
-                      src="src/assets/logout-svgrepo-com.svg"
-                      className="w-6 h-6 text-red-600"
-                      alt="Logout-logo"
-                    />
+                    <LogOut />
                     Cerrar Sesion
                   </button>
                 </ul>
