@@ -23,18 +23,18 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route
-                path="/measurement"
+                path="/measurements"
                 element={
                   <PrivateRoute>
-                    <MeasurementPage />
+                    <AllMeasurementsPage />
                   </PrivateRoute>
                 }
               />{" "}
               <Route
-                path="measurement/all-measurement"
+                path="measurements/create"
                 element={
                   <PrivateRoute>
-                    <AllMeasurementsPage />
+                    <MeasurementPage />
                   </PrivateRoute>
                 }
               />

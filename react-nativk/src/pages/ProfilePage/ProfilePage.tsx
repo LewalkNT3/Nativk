@@ -3,8 +3,10 @@ import useAuth from "../../../services/Authentication/useAuth";
 import { useLogout } from "../../../services/Authentication/useLogout";
 import { updateProfile } from "../../../services/Profile/updateProfile";
 
+import { Mail } from "@deemlol/next-icons";
+
 export default function ProfilePage() {
-  const { user, authFetch } = useAuth();
+  const { user } = useAuth();
   const { handleLogout } = useLogout();
   const [formData, setFormData] = useState<any>({});
   const [initialData, setInitialData] = useState<any>({});
@@ -57,7 +59,10 @@ export default function ProfilePage() {
         </div>
         <div>
           <h3 className="uppercase font-bold text-3xl">{user.username}</h3>
-          <p className="font-light text-gray-600">{user.email}</p>
+          <div className="flex flex-row gap-1 justify-center items-center">
+            <Mail size={18} />
+            <p className="font-light text-gray-600">{user.email}</p>
+          </div>
         </div>
       </div>
       <label className="block mb-2">

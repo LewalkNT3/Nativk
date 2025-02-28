@@ -46,7 +46,7 @@ export default function NavbarSection() {
         </a>
         <a
           className="hover:border-b-sky-600 hover:border-b transition-all"
-          href="/measurement"
+          href="/measurements"
         >
           Measurement
         </a>

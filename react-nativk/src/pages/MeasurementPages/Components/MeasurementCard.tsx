@@ -39,7 +39,7 @@ const MeasurementCard: React.FC<MeasurementCardProps> = ({
             </button>
             {measurement.flags && (
               <button className="p-1">
-                <Flag size={22} />
+                <Flag size={22} color="#e7000b" />
               </button>
             )}
             {/* <button className="cursor-pointer hover:bg-gray-300 hover:rounded-xl p-1">

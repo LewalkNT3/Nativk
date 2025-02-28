@@ -55,8 +55,8 @@ export default function AllMeasurementsPage() {
           precisas y guardar o editar los resultados para futuras referencias.
         </p>
         <div className="flex flex-row items-center gap-3 text-sky-400">
-          <a href="measurement/all-measurement" className="hover:text-sky-700">
-            Ver todas las notas
+          <a href="measurements/create" className="hover:text-sky-700">
+            Crear una nueva medicion
           </a>
           <div className="bg-gray-500 w-[5px] h-[1px]"></div>
           <a href="" className="hover:text-sky-700">
