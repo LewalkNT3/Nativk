@@ -3,17 +3,19 @@ import MeasurementPage from "./pages/MeasurementPages/measurement";
 import RegisterPage from "./pages/AuthPages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import AllMeasurementsPage from "./pages/MeasurementPages/all-measurements";
+import TaskPage from "./pages/TasksPages/TaskPage";
 
 import Navbar from "./Components/Navbar";
 
 import { Route, Routes } from "react-router-dom";
 import PrivateRoute from "../services/RoutesAuth/PrivateRoute"; // Importa PrivateRoute
 import "./App.css";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
     <>
-      <div className="flex flex-col w-full h-full justify-center items-center">
+      <div className="flex flex-col w-full h-full justify-center items-center overflow-hidden">
         <div className="flex flex-col items-center justify-center gap-10 h-full max-w-[900px]">
           <div>
             <Navbar />
@@ -29,7 +31,7 @@ function App() {
                     <AllMeasurementsPage />
                   </PrivateRoute>
                 }
-              />{" "}
+              />
               <Route
                 path="measurements/create"
                 element={
@@ -45,8 +47,19 @@ function App() {
                     <ProfilePage />
                   </PrivateRoute>
                 }
-              />{" "}
+              />
+              <Route
+                path="/tasks"
+                element={
+                  <PrivateRoute>
+                    <TaskPage />
+                  </PrivateRoute>
+                }
+              />
             </Routes>
+          </div>
+          <div>
+            <Footer />
           </div>
         </div>
       </div>

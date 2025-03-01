@@ -40,9 +40,9 @@ export default function NavbarSection() {
       <div className="flex flex-row justify-between gap-10 text-lg">
         <a
           className="hover:border-b-sky-600 hover:border-b transition-all"
-          href="/foods"
+          href="/tasks"
         >
-          Foods
+          Tasks
         </a>
         <a
           className="hover:border-b-sky-600 hover:border-b transition-all"
