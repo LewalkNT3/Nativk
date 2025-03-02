@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { createMeasurement } from "../../../services/Measurement/measurement";
+import { useNavigate } from "react-router-dom";
 
 import MeasurementSelector from "./Components/MeasurementSelector";
 
 export default function MeasurementPage() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     weight: 0,
     sleep: 0,
@@ -23,6 +25,7 @@ export default function MeasurementPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    navigate("/measurements");
 
     const formattedForm = {
       ...form,
@@ -51,7 +54,7 @@ export default function MeasurementPage() {
   };
 
   return (
-    <div className="h-screen flex flex-col  items-center w-[550px]">
+    <div className="min-h-screen flex flex-col  items-center w-[550px]">
       <div className="self-start w-full mb-5 flex flex-col gap-1">
         <h1 className="text-7xl self-start font-semibold">Crear Mediciones</h1>
         <p className=" text-gray-500">
@@ -131,6 +134,7 @@ export default function MeasurementPage() {
         <button
           type="submit"
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          onSubmit={handleSubmit}
         >
           Guardar
         </button>

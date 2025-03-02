@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 
 export const useLogout = () => {
@@ -39,6 +40,7 @@ export const useLogout = () => {
     localStorage.removeItem("refresh_token");
     localStorage.removeItem("user");
     setUser(null);
+    toast.success("Cesion cerrada correctamente");
     navigate("/login");
   };
 

@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import useAuth from "../../services/Authentication/useAuth";
-import { useLogout } from "../../services/Authentication/useLogout";
-
+import { useAuth } from "../../services/RoutesAuth/AuthContext";
 import { User } from "@deemlol/next-icons";
 import { LogOut } from "@deemlol/next-icons";
+import { useLogout } from "../../services/Authentication/useLogout";
 
-export default function NavbarSection() {
+const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
+
   const { handleLogout } = useLogout();
 
   useEffect(() => {
@@ -26,9 +26,9 @@ export default function NavbarSection() {
     return `${name?.charAt(0) || ""}${lastName?.charAt(0) || ""}`.toUpperCase();
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <header className="sticky top-0 flex gap-28 w-full items-center justify-center bg-transparent p-3 ">
@@ -107,4 +107,6 @@ export default function NavbarSection() {
       </div>
     </header>
   );
-}
+};
+
+export default Navbar;

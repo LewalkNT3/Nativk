@@ -5,6 +5,8 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import AllMeasurementsPage from "./pages/MeasurementPages/all-measurements";
 import TaskPage from "./pages/TasksPages/TaskPage";
 
+import { Toaster } from "react-hot-toast";
+
 import Navbar from "./Components/Navbar";
 
 import { Route, Routes } from "react-router-dom";
@@ -15,7 +17,8 @@ import Footer from "./Components/Footer";
 function App() {
   return (
     <>
-      <div className="flex flex-col w-full h-full justify-center items-center overflow-hidden">
+      <div className="flex flex-col w-full  h-full justify-center items-center overflow-hidden">
+        <Toaster />
         <div className="flex flex-col items-center justify-center gap-10 h-full max-w-[900px]">
           <div>
             <Navbar />

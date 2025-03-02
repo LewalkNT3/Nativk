@@ -19,7 +19,7 @@ export default function TaskPage() {
   if (isLoading) return <p>Cargando tableros...</p>;
 
   return (
-    <div>
+    <div className="h-screen">
       <h1 className="text-3xl font-bold">Mis Tableros</h1>
       <ul className="px-3">
         {boards?.map((board: Board) => (

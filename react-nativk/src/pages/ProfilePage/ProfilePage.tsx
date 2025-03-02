@@ -4,6 +4,7 @@ import { useLogout } from "../../../services/Authentication/useLogout";
 import { updateProfile } from "../../../services/Profile/updateProfile";
 
 import { Mail } from "@deemlol/next-icons";
+import toast from "react-hot-toast";
 
 export default function ProfilePage() {
   const { user } = useAuth();
@@ -20,7 +21,7 @@ export default function ProfilePage() {
     try {
       await updateProfile(formData);
       setInitialData(formData);
-      alert("Perfil actualizado correctamente");
+      toast.success("Perfil actualizado correctamente");
     } catch (error: any) {
       setError(error.message);
     }
@@ -34,7 +35,6 @@ export default function ProfilePage() {
     }
   }, [user]);
 
-  // Manejar cambios en los inputs
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };

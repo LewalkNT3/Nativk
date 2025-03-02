@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { loginUser } from "../../../services/Authentication/LoginAuth";
+import toast from "react-hot-toast";
+
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -9,6 +12,8 @@ export default function LoginPage() {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const mutation = useMutation<void, Error, typeof formData>({
     mutationFn: loginUser,
     onSuccess: (data: any) => {
@@ -16,11 +21,12 @@ export default function LoginPage() {
       localStorage.setItem("access_token", data.access);
       localStorage.setItem("refresh_token", data.refresh);
       localStorage.setItem("user", JSON.stringify(data.user));
-      alert("Inicio exitoso");
+      toast.success("Inicio Exitoso");
+      navigate("/measurements");
     },
     onError: (error: any) => {
       console.error("error al iniciar sesion", error);
-      alert("Error al iniciar sesion");
+      toast.error("Error al iniciar sesion, revise los datos enviados");
     },
   });
 

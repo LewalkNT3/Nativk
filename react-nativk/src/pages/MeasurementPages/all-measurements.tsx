@@ -35,6 +35,7 @@ export default function AllMeasurementsPage() {
     try {
       await deleteMeasurement(id);
       console.log("");
+      window.location.reload();
     } catch (error) {
       console.error("error al elimar la medicion", error);
     }
@@ -68,6 +69,7 @@ export default function AllMeasurementsPage() {
         <ul className="grid grid-cols-3 grid-rows-3 w-full mt-6 space-y-2 gap-5">
           {measurement.map((m) => (
             <MeasurementCard
+              key={m.id}
               measurement={m}
               onDelete={() => handleDelete(Number(m.id))}
             />

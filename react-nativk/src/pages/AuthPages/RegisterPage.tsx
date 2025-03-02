@@ -2,8 +2,12 @@ import { useMutation } from "@tanstack/react-query";
 import { registerUser } from "../../../services/Authentication/RegisterAuth";
 
 import { useState } from "react";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterPage() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -20,11 +24,12 @@ export default function RegisterPage() {
     mutationFn: registerUser,
     onSuccess: (data) => {
       console.log("Usuario registrado", data);
-      alert("Registrado correctamente");
+      toast.success("Registrado correctamente");
+      navigate("/login");
     },
     onError: (error) => {
       console.error("Error al registrarse", error);
-      alert("Error al registrarse");
+      toast.error("Error la registrase, revise los datos enviados");
     },
   });
 

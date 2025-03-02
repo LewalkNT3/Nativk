@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 interface AuthContextType {
   user: any;
+  setUser: (user: any) => void;
   isLoading: boolean;
   login: (userData: any) => void;
   logout: () => void;
@@ -38,7 +39,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, login, logout }}>
+    <AuthContext.Provider value={{ user, setUser, isLoading, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
