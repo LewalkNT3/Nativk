@@ -4,6 +4,7 @@ import RegisterPage from "./pages/AuthPages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import AllMeasurementsPage from "./pages/MeasurementPages/all-measurements";
 import TaskPage from "./pages/TasksPages/TaskPage";
+import ExercisesPage from "./pages/ExercisesPages/exercises";
 
 import { Toaster } from "react-hot-toast";
 
@@ -56,6 +57,14 @@ function App() {
                 element={
                   <PrivateRoute>
                     <TaskPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/exercises"
+                element={
+                  <PrivateRoute>
+                    <ExercisesPage />
                   </PrivateRoute>
                 }
               />
